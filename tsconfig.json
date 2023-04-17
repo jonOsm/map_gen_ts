@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+      "sourceRoot": "src",
       "strict": true,
       "module": "commonjs",
       "esModuleInterop": true,

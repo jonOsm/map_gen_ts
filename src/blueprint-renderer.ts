@@ -7,9 +7,11 @@ interface BlueprintRenderer {
 export default class ConsoleRenderer implements BlueprintRenderer {
   static instances = 0
   static self: ConsoleRenderer
+  padding: number
 
   //singleton
-  constructor() {
+  constructor(padding = 2) {
+    this.padding = padding
     if (ConsoleRenderer.instances > 0) {
       return ConsoleRenderer.self
     }
@@ -27,5 +29,6 @@ export default class ConsoleRenderer implements BlueprintRenderer {
       }
       process.stdout.write("\n")
     }
+    process.stdout.write("\n".repeat(this.padding))
   }
 }

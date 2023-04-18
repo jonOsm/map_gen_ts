@@ -12,16 +12,16 @@ export class TransformationBuilder {
 
   increment(): this {
     //TODO: weird having to pass blueprint back to lambda?
-    this.blueprint.applyToAllTiles(
-      (blueprint: Blueprint, { x, y }: Point) => blueprint.tiles[y][x]++
+    this.blueprint.forEachPoint(
+      ({ x, y }: Point) => this.blueprint.tiles[y][x]++
     )
     return this
   }
 
   fill(num: number): this {
     //TODO: weird having to pass blueprint back to lambda?
-    this.blueprint.applyToAllTiles(
-      (blueprint: Blueprint, { x, y }: Point) => (blueprint.tiles[y][x] = num)
+    this.blueprint.forEachPoint(
+      ({ x, y }: Point) => (this.blueprint.tiles[y][x] = num)
     )
     return this
   }
@@ -46,6 +46,26 @@ export class TransformationBuilder {
       }
     }
 
+    return this
+  }
+
+  normalizeOuterWalls(): this {
+    let bp = this.blueprint
+
+    bp.forEachPoint((p: Point, forceWallAtEdge = true) => {
+      let currentTileVal = bp.tiles[p.y][p.x]
+      let adjacent = bp.getAdjacentValues(p)
+
+      if (currentTileVal === 0) return this
+
+      if (forceWallAtEdge && bp.isOnMapEdge(p)) {
+        bp.tiles[p.y][p.x] = 1
+        return this
+      }
+
+      let nextToZero = adjacent.indexOf(0) > -1
+      bp.tiles[p.y][p.x] = nextToZero ? 1 : currentTileVal + 1
+    })
     return this
   }
 }

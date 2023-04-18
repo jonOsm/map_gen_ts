@@ -1,7 +1,14 @@
 import Blueprint from "./blueprint"
+import { TILE } from "./tile"
 
 interface BlueprintRenderer {
   render: (blueprint: Blueprint) => void
+}
+const tileChars = {
+  [TILE.VOID]: "?",
+  [TILE.LAND]: " ",
+  [TILE.WALL]: "|",
+  [TILE.FLOOR]: ".",
 }
 
 export default class ConsoleRenderer implements BlueprintRenderer {
@@ -21,10 +28,8 @@ export default class ConsoleRenderer implements BlueprintRenderer {
   render(blueprint: Blueprint) {
     for (let row of blueprint.tiles) {
       for (let value of row) {
-        let fmtValue = value.toString()
-        if (value == 0) {
-          fmtValue = "."
-        }
+        let fmtValue = value in TILE ? tileChars[value as TILE] : "@"
+
         process.stdout.write(fmtValue)
       }
       process.stdout.write("\n")

@@ -1,4 +1,4 @@
-import rand from "./util/rand"
+import { intRandRange } from "./util/rand"
 
 export interface ShapeConstraint {
   minW: number
@@ -30,8 +30,8 @@ export class RectFactory extends ShapeFactory {
     let rects: Rect[] = []
     Math.floor(Math.random() * this.constraints.minW)
     for (let i = 0; i < num_shapes; i++) {
-      let w = rand.intRange(this.constraints.minW, this.constraints.maxW)
-      let h = rand.intRange(this.constraints.minH, this.constraints.maxH)
+      let w = intRandRange(this.constraints.minW, this.constraints.maxW, true)
+      let h = intRandRange(this.constraints.minH, this.constraints.maxH, true)
       rects.push(new Rect(w, h))
     }
     return rects

@@ -65,11 +65,4 @@ export default class Blueprint {
       point.y === this.h - 1
     )
   }
-  // clearTiles() {
-  //   for (let y = 0; y < this.h; y++) {
-  //     for (let x = 0; x < this.w; x++) {
-  //       this.tiles[x][y] = 0
-  //     }
-  //   }
-  // }
 }

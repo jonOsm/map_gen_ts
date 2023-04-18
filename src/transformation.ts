@@ -38,10 +38,13 @@ export class TransformationBuilder {
       let yMax = Math.min(pos.y + rect.size.h, this.blueprint.h - 1)
       let yRange = range(yMin, yMax, true)
 
-      //variation 2(todo) - ignore if out of bounds?
+      // handles annoying single or double wall only structures
+      if (yRange.length < 3 || xRange.length < 3) continue
+
       for (let y of yRange) {
         for (let x of xRange) {
-          this.blueprint.tiles[y][x]++
+          let tileVal = this.blueprint.tiles[y][x]
+          this.blueprint.tiles[y][x] = tileVal < 2 ? tileVal + 1 : 2
         }
       }
     }
@@ -49,7 +52,7 @@ export class TransformationBuilder {
     return this
   }
 
-  normalizeOuterWalls(forceWallAtEdge = true): this {
+  normalizeOuterWalls(): this {
     let bp = this.blueprint
 
     bp.forEachPoint((p: Point) => {
@@ -58,17 +61,26 @@ export class TransformationBuilder {
 
       if (currentTileVal === 0) return this
 
-      //TODO: Edge case causing extruding walls
-      if (forceWallAtEdge && bp.isOnMapEdge(p)) {
-        bp.tiles[p.y][p.x] = 1
-        return this
-      }
-
       let nextToZero = adjacent.indexOf(0) > -1
-      let numSame = adjacent.filter((n) => n === currentTileVal).length
-
-      bp.tiles[p.y][p.x] = nextToZero && numSame > 1 ? 1 : currentTileVal + 1
+      bp.tiles[p.y][p.x] = nextToZero ? 1 : 2
     })
+
+    return this
+  }
+
+  addWallsAtMapBoundary(): this {
+    let bp = this.blueprint
+    bp.forEachPoint((p: Point) => {
+      let currentTileVal = bp.tiles[p.y][p.x]
+      let adjacent = bp.getAdjacentValues(p)
+      if (currentTileVal === 1 || currentTileVal === 0) return this
+
+      if (bp.isOnMapEdge(p)) {
+        bp.tiles[p.y][p.x] = 1
+      }
+      return this
+    })
+
     return this
   }
 }

@@ -9,6 +9,7 @@ const tileChars = {
   [TILE.LAND]: " ",
   [TILE.WALL]: "|",
   [TILE.FLOOR]: "-",
+  [TILE.DOOR]: "#",
 }
 
 export default class ConsoleRenderer implements BlueprintRenderer {

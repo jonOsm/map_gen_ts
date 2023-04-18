@@ -7,7 +7,7 @@ import { intRandRange } from "./util/rand"
 type Directions = ["n", "e", "s", "w"]
 type Direction = "n" | "e" | "s" | "w"
 
-export class TransformationBuilder {
+export class BlueprintBuilder {
   blueprint: Blueprint
 
   constructor(blueprint: Blueprint) {

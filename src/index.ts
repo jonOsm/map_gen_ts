@@ -1,7 +1,7 @@
 import Blueprint from "./blueprint"
 import ConsoleRenderer from "./blueprint-renderer"
 import { RectFactory } from "./shape"
-import { TransformationBuilder } from "./transformation"
+import { BlueprintBuilder } from "./transformation"
 
 const consoleRenderer = new ConsoleRenderer()
 const rectFactory = new RectFactory({
@@ -13,10 +13,11 @@ const rectFactory = new RectFactory({
 
 const rects = rectFactory.generate(20)
 let blueprint = new Blueprint(40, 20)
-let transformations = new TransformationBuilder(blueprint)
+let bpBuilder = new BlueprintBuilder(blueprint)
 
-/**********Approach 1 **************/
-transformations
+/**********Algo 1 **************/
+/*** Draw rects, union them, raw perimeter as outer wall, randomize inner wall*/
+bpBuilder
   .addRandomRects(rects)
   .normalizeOuterWalls()
   .addWallsAtMapBoundary()

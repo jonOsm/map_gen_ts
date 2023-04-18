@@ -49,22 +49,25 @@ export class TransformationBuilder {
     return this
   }
 
-  normalizeOuterWalls(): this {
+  normalizeOuterWalls(forceWallAtEdge = true): this {
     let bp = this.blueprint
 
-    bp.forEachPoint((p: Point, forceWallAtEdge = true) => {
+    bp.forEachPoint((p: Point) => {
       let currentTileVal = bp.tiles[p.y][p.x]
       let adjacent = bp.getAdjacentValues(p)
 
       if (currentTileVal === 0) return this
 
+      //TODO: Edge case causing extruding walls
       if (forceWallAtEdge && bp.isOnMapEdge(p)) {
         bp.tiles[p.y][p.x] = 1
         return this
       }
 
       let nextToZero = adjacent.indexOf(0) > -1
-      bp.tiles[p.y][p.x] = nextToZero ? 1 : currentTileVal + 1
+      let numSame = adjacent.filter((n) => n === currentTileVal).length
+
+      bp.tiles[p.y][p.x] = nextToZero && numSame > 1 ? 1 : currentTileVal + 1
     })
     return this
   }

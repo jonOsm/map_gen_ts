@@ -21,9 +21,9 @@ consoleRenderer.render(blueprint)
 // transformations.fill(8)
 // consoleRenderer.render(blueprint)
 transformations.addRandomRects(rects)
-// consoleRenderer.render(blueprint)
+consoleRenderer.render(blueprint, true)
 transformations.normalizeOuterWalls()
-consoleRenderer.render(blueprint)
+consoleRenderer.render(blueprint, false, "-")
 
 // setInterval(function () {
 //   transformations.addRandomRects(rects)

@@ -54,7 +54,6 @@ export default class Blueprint {
         adjacentValues.push(this.tiles[y][x])
       }
     }
-    console.log(adjacentValues.length)
     return adjacentValues
   }
 

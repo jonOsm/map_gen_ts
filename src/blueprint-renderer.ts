@@ -8,7 +8,7 @@ const tileChars = {
   [TILE.VOID]: "?",
   [TILE.LAND]: " ",
   [TILE.WALL]: "|",
-  [TILE.FLOOR]: ".",
+  [TILE.FLOOR]: "-",
 }
 
 export default class ConsoleRenderer implements BlueprintRenderer {
@@ -24,11 +24,14 @@ export default class ConsoleRenderer implements BlueprintRenderer {
     }
     ConsoleRenderer.instances++
   }
-
-  render(blueprint: Blueprint) {
+  render(blueprint: Blueprint, raw = false, unmappedChar = "@") {
     for (let row of blueprint.tiles) {
       for (let value of row) {
-        let fmtValue = value in TILE ? tileChars[value as TILE] : "@"
+        let fmtValue = value === 0 ? "." : value.toString()
+
+        if (!raw) {
+          fmtValue = value in TILE ? tileChars[value as TILE] : unmappedChar
+        }
 
         process.stdout.write(fmtValue)
       }

@@ -34,7 +34,7 @@ export default class ConsoleRenderer implements BlueprintRenderer {
           fmtValue = value in TILE ? tileChars[value as TILE] : unmappedChar
         }
 
-        process.stdout.write(fmtValue)
+        process.stdout.write(fmtValue.repeat(2))
       }
       process.stdout.write("\n")
     }

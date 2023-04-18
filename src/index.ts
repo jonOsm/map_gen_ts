@@ -5,14 +5,14 @@ import { TransformationBuilder } from "./transformation"
 
 const consoleRenderer = new ConsoleRenderer()
 const rectFactory = new RectFactory({
-  minW: 3,
-  maxW: 7,
-  minH: 2,
-  maxH: 9,
+  minW: 4,
+  maxW: 10,
+  minH: 4,
+  maxH: 10,
 })
 
-const rects = rectFactory.generate(30)
-let blueprint = new Blueprint(60, 20)
+const rects = rectFactory.generate(20)
+let blueprint = new Blueprint(40, 20)
 let transformations = new TransformationBuilder(blueprint)
 
 // transformations.fill(8)
@@ -23,6 +23,9 @@ transformations.normalizeOuterWalls()
 consoleRenderer.render(blueprint, true)
 transformations.addWallsAtMapBoundary()
 consoleRenderer.render(blueprint)
+transformations.addRandomWalls(0.5)
+consoleRenderer.render(blueprint)
+
 // transformations.cleanWallArtifacts()
 // consoleRenderer.render(blueprint, false)
 

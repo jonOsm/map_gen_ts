@@ -7,7 +7,7 @@ interface BlueprintRenderer {
 const tileChars = {
   [TILE.VOID]: "?",
   [TILE.LAND]: " ",
-  [TILE.WALL]: "|",
+  [TILE.WALL]: "H",
   [TILE.FLOOR]: "-",
   [TILE.DOOR]: "#",
 }

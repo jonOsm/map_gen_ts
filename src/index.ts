@@ -15,22 +15,13 @@ const rects = rectFactory.generate(20)
 let blueprint = new Blueprint(40, 20)
 let transformations = new TransformationBuilder(blueprint)
 
-// transformations.fill(8)
-// consoleRenderer.render(blueprint)
-transformations.addRandomRects(rects)
-consoleRenderer.render(blueprint, true)
-transformations.normalizeOuterWalls()
-consoleRenderer.render(blueprint, true)
-transformations.addWallsAtMapBoundary()
-consoleRenderer.render(blueprint)
-transformations.addRandomWalls(0.5)
-consoleRenderer.render(blueprint)
+/**********Approach 1 **************/
+transformations
+  .addRandomRects(rects)
+  .normalizeOuterWalls()
+  .addWallsAtMapBoundary()
+  .addRandomWalls(0.5)
 
-// transformations.cleanWallArtifacts()
-// consoleRenderer.render(blueprint, false)
-
-// setInterval(function () {
-// transformations.addRandomRects(rects).normalizeOuterWalls().cleanWallArtifacts()
-// consoleRenderer.render(blueprint)
-// transformations.fill(0)
-// }, 5000)
+consoleRenderer.render(blueprint)
+/**********Approach 2 **************/
+//TODO: Draw lines of random length, do multiple iterations

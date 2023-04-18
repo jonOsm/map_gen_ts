@@ -29,7 +29,6 @@ export class TransformationBuilder {
     )
     return this
   }
-
   addRandomRects(rects: Rect[]): this {
     for (let rect of rects) {
       let pos = this.blueprint.randomPoint()
@@ -126,50 +125,7 @@ export class TransformationBuilder {
         //TODO: wall draw prob should be proportional to aspect ratio
         let direction = directions[intRandRange(0, 3)]
         this.buildWall(direction, p, bp)
-        // if (direction == "n") {
-        //   let nextPos: Point = { x: p.x, y: p.y + 1 }
-        //   while (1) {
-        //     if (nextPos.y > bp.h - 1) break
-        //     nextTile = bp.tiles[nextPos.y][nextPos.x]
-
-        //     if (nextTile !== 2) break
-
-        //     bp.tiles[nextPos.y][nextPos.x] = 1
-        //     nextPos.y++
-        //   }
-        // }
-        // if (direction == "e") {
-        //   let nextPos: Point = { x: p.x + 1, y: p.y }
-        //   while (nextTile !== 1 && nextTile !== 2) {
-        //     if (nextPos.x > bp.w - 1) break
-        //     nextTile = bp.tiles[nextPos.y][nextPos.x]
-        //     bp.tiles[nextPos.y][nextPos.x] = 1
-        //     nextPos.x++
-        //   }
-        // }
-        // if (direction == "s") {
-        //   let nextPos: Point = { x: p.x, y: p.y - 1 }
-        //   while (nextTile !== 1 && nextTile !== 2) {
-        //     if (nextPos.y < 0) break
-        //     nextTile = bp.tiles[nextPos.y][nextPos.x]
-        //     bp.tiles[nextPos.y][nextPos.x] = 1
-        //     nextPos.y--
-        //   }
-        // }
-        // if (direction == "w") {
-        //   while (nextTile !== 1 && nextTile !== 2) {
-        //     if (nextPos.x < 0) break
-        //     let nextPos: Point = { x: p.x - 1, y: p.y }
-        //     nextTile = bp.tiles[nextPos.y][nextPos.x]
-        //     bp.tiles[nextPos.y][nextPos.x] = 1
-        //     nextPos.x--
-        //   }
-        // }
-        //choose direction randomly
-        //try drawing
-        //
       }
-      //TODO: Detect shortest path, otherwise we can draw outside (good sometimes?)
     })
     return this
   }

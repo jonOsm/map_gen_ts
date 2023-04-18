@@ -1,4 +1,5 @@
 import rand from "./util/rand"
+
 export interface ShapeConstraint {
   minW: number
   maxW: number

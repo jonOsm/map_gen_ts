@@ -3,8 +3,6 @@ import ConsoleRenderer from "./blueprint-renderer"
 import { RectFactory } from "./shape"
 import { TransformationBuilder } from "./transformation"
 
-class Algo {}
-
 const consoleRenderer = new ConsoleRenderer()
 const rectFactory = new RectFactory({
   minW: 3,
@@ -12,12 +10,13 @@ const rectFactory = new RectFactory({
   minH: 2,
   maxH: 9,
 })
-const rects = rectFactory.generate(30)
-let map = new Blueprint(60, 20)
-let transformations = new TransformationBuilder()
-consoleRenderer.render(map)
-transformations.sanityCheck(map)
-consoleRenderer.render(map)
 
-transformations.sanityCheck(map).sanityCheck(map)
-consoleRenderer.render(map)
+const rects = rectFactory.generate(30)
+let blueprint = new Blueprint(60, 20)
+let transformations = new TransformationBuilder(blueprint)
+consoleRenderer.render(blueprint)
+transformations.sanityCheck()
+consoleRenderer.render(blueprint)
+
+transformations.sanityCheck().sanityCheck()
+consoleRenderer.render(blueprint)

@@ -19,7 +19,7 @@ export default class ConsoleRenderer implements BlueprintRenderer {
   }
 
   render(blueprint: Blueprint) {
-    for (let row of blueprint.map) {
+    for (let row of blueprint.tiles) {
       for (let value of row) {
         let fmtValue = value.toString()
         if (value == 0) {

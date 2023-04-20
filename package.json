@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "start": "ts-node src/index.ts",
     "start-old": "tsc && node dist/index.js"
   },

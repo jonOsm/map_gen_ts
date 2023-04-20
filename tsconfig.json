@@ -3,6 +3,7 @@
       "sourceRoot": "src",
       "strict": true,
       "module": "commonjs",
+      "declaration": true,
       "esModuleInterop": true,
       "target": "es6",
       "experimentalDecorators": true,

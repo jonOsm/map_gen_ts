@@ -113,8 +113,6 @@ export class BlueprintBuilder {
       let adjacent = bp.getAdjacentValues(p)
       let numSame = adjacent.filter((n) => n === 1).length
       if (numSame < 4 && Math.random() < density) {
-        //TODO: abstract while loop logic for each direction
-        // let directions: Directions = ["n", "e", "s", "w"]
         let directions = [
           { x: 0, y: 1 },
           { x: 1, y: 0 },
